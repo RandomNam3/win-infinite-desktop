@@ -111,12 +111,16 @@ jobs:
         with:
           arch: x64
 
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v4
+      - name: Cache Qt
+        uses: actions/cache@v4
         with:
-          version: '6.11.3'
-          arch: win64_msvc2022_64
-          cache: true
+          path: ${{ runner.temp }}/Qt
+          key: qt-6.11.3-msvc2022_64-v1
+
+      - name: Install Qt
+        shell: pwsh
+        # From Qt 6.11 on the repository layout is new; install-qt-action/aqtinstall cannot read it yet.
+        run: ./tools/ci/install-qt.ps1 -Version 6.11.3 -Arch msvc2022_64
 
       - name: Configure
         run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DWID_WITH_QT=ON

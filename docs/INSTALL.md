@@ -180,12 +180,14 @@ Voraussetzungen:
 - Qt ≥ 6.8 für MSVC (Module Core, Gui, Network, Qml, Quick, QuickControls2, Test), z. B. über den
   Qt Online Installer
 
+Die Release-Pakete werden mit Qt 6.11.3 gebaut.
+
 In der *Developer PowerShell for VS*:
 
 ```powershell
 git clone https://github.com/RandomNam3/win-infinite-desktop.git
 cd win-infinite-desktop
-cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=C:\Qt\6.8.3\msvc2022_64
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=C:\Qt\6.11.3\msvc2022_64
 cmake --build build
 ctest --test-dir build --output-on-failure
 ```
@@ -193,7 +195,7 @@ ctest --test-dir build --output-on-failure
 Installierbares ZIP wie im Release (braucht `windeployqt` im `PATH`):
 
 ```powershell
-$env:PATH = "C:\Qt\6.8.3\msvc2022_64\bin;$env:PATH"
+$env:PATH = "C:\Qt\6.11.3\msvc2022_64\bin;$env:PATH"
 pwsh scripts/package.ps1 -Build build -Output dist -Arch x64
 ```
 

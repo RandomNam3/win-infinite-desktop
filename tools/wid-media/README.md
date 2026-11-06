@@ -5,7 +5,7 @@ unberührt; das Fenster der Sandbox zeigt, was passiert.
 
 ```powershell
 cmake --build build
-$env:PATH = "C:\Qt\6.8.3\msvc2022_64\bin;$env:PATH"      # windeployqt
+$env:PATH = "C:\Qt\6.11.3\msvc2022_64\bin;$env:PATH"      # windeployqt
 powershell -File tools\wid-media\record.ps1 -Build build                 # alle Szenen nach docs\images
 powershell -File tools\wid-media\record.ps1 -Build build -Scenes notes   # nur einzelne Szenen
 powershell -File tools\wid-media\record.ps1 -Build build -Theme light    # heller Modus

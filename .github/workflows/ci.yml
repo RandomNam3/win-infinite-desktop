@@ -50,7 +50,7 @@ jobs:
         if: matrix.qt != ''
         uses: jurplel/install-qt-action@v4
         with:
-          version: '6.8.3'
+          version: '6.11.3'
           arch: ${{ matrix.qt }}
           cache: true
 
@@ -229,7 +229,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: '6.8.3'
+          version: '6.11.3'
           arch: win64_msvc2022_64
           cache: true
       - name: Build

@@ -92,7 +92,7 @@ Updates installiert die Einstellungs-App. Alles Weitere, auch Deinstallieren und
 ## Selbst bauen
 
 ```powershell
-cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=C:\Qt\6.8.3\msvc2022_64
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=C:\Qt\6.11.3\msvc2022_64
 cmake --build build
 ctest --test-dir build
 pwsh scripts/package.ps1 -Build build      # ZIP wie im Release

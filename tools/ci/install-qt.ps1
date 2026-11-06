@@ -47,7 +47,10 @@ if (Test-Path (Join-Path $root "bin\Qt6Core.dll")) {
         $file = Join-Path $download $archive
         Write-Host "Downloading $archive"
         Invoke-WebRequest -UseBasicParsing -Uri $url -OutFile $file
-        $expected = ((Invoke-WebRequest -UseBasicParsing -Uri "$url.sha1").Content.Trim() -split '\s+')[0]
+        # The .sha1 files come as application/octet-stream: read them from disk as text.
+        Invoke-WebRequest -UseBasicParsing -Uri "$url.sha1" -OutFile "$file.sha1"
+        $expected = ((Get-Content -Raw "$file.sha1").Trim() -split '\s+')[0]
+        Remove-Item "$file.sha1"
         $actual = (Get-FileHash -Algorithm SHA1 $file).Hash
         if ($actual -ine $expected) { throw "SHA-1 of $archive is $actual, the repository says $expected" }
         & $sevenZip x -y -bso0 -bsp0 "-o$root" $file
